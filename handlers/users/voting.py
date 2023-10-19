@@ -30,25 +30,25 @@ async def start_create_voting(message: types.Message):
 
 
 @dp.message_handler(state=CallbackCreateVoting.Q1)
-async def downvotes_tokens_create(message: types.Message, state: FSMContext):
+async def bottom_threshold_create(message: types.Message, state: FSMContext):
     await state.update_data(description=message.text)
     await message.answer("Введите количество токенов, необходимых для получения права голосования")
     await CallbackCreateVoting.next()
 
 
 @dp.message_handler(state=CallbackCreateVoting.Q2)
-async def upvotes_tokens_create(message: types.Message, state: FSMContext):
-    await state.update_data(downvotes_tokens=message.text)
+async def upside_threshold_create(message: types.Message, state: FSMContext):
+    await state.update_data(bottom_threshold=message.text)
     await message.answer("Введите количество токенов, необходимых для того, чтобы голосование считалось действительным")
     await CallbackCreateVoting.next()
 
 
 @dp.message_handler(state=CallbackCreateVoting.Q3)
 async def end_creating(message: types.Message, state: FSMContext):
-    await state.update_data(upvotes_tokens=message.text)
+    await state.update_data(upside_threshold=message.text)
     data = await state.get_data()
     connection = SqliteConnection()
-    result = connection.add_voting(data["downvotes_tokens"], data["upvotes_tokens"], data["description"])
+    result = connection.add_voting(data["bottom_threshold"], data["upside_threshold"], data["description"])
     if result is None:
         await message.answer("Голосование успешно создано")
     else:
