@@ -3,7 +3,7 @@ from aiogram.dispatcher import FSMContext
 
 import utils.stats
 from sqlite_conection import SqliteConnection
-from keyboards.inline.register_confirm import register_confirm
+from keyboards.inline.confirm import confirm
 
 from loader import dp
 from aiogram import types
@@ -28,7 +28,7 @@ async def ton_purse_register(message: types.Message, state: FSMContext):
     await state.update_data(username=message.from_user.username)
     await state.update_data(id=message.from_user.id)
     await message.answer(f"Вы подтвержаете, что кошелек https://tonscan.org/address/{message.text} принадлежит вам?",
-                         reply_markup=register_confirm())
+                         reply_markup=confirm())
     await CallbackRegisterUser.next()
 
 

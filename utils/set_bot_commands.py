@@ -9,5 +9,5 @@ async def set_default_commands(dp):
         types.BotCommand("admin", "Войти как админ"),
         types.BotCommand("myprofile", "Посмотреть профиль"),
         types.BotCommand("createvoting", "Создать голосование"),
-        types.BotCommand("createvotingparam", "Создать голосование по изменению параметра системы")
+        types.BotCommand("listvotings", "Просмотр текущих голосований")
     ])

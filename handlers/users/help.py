@@ -13,6 +13,6 @@ async def bot_help(message: types.Message):
             "/registeruser - Зарегистрироваться в системе",
             "/myprofile - Посмотреть профиль",
             "/createvoting - Создать голосование",
-            "/createvotingparam - Создать голосование по изменению параметра системы")
+            "/listvotings - Просмотр текущих голосований")
 
     await message.answer("\n".join(text))
